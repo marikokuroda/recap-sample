@@ -3,42 +3,37 @@
 <head>
   <meta charset="utf-8">
   <title>Form Screenshot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       background: #f0f0f0;
       display: flex;
       justify-content: center;
+      overflow-x: auto; /* allow horizontal scroll when zoomed */
     }
-
-    .image-container {
-      width: 100%;
-      overflow: hidden; /* hide side whitespace */
-      max-width: 100vw; /* never exceed viewport width */
-    }
-
-    .image-container img {
+    img {
       display: block;
-      width: 100%;       /* scale to container width if container smaller than image */
+      margin: 0 auto;
+      max-width: none; /* prevents shrinking */
+      width: 100%;     /* start fit-to-screen */
       height: auto;
-      object-fit: cover; /* crop left/right blank space */
-      object-position: center center; /* keep the form center in view */
+      cursor: zoom-in; /* indicate clickable */
+      transition: width 0.3s ease;
     }
-
-    /* Desktop: show full image at natural width if viewport is wider */
-    @media (min-width: 1200px) {
-      .image-container img {
-        width: auto;
-        max-width: none;
-        object-fit: none;
-      }
+    img.zoomed {
+      width: auto;       /* actual size */
+      cursor: zoom-out;  /* indicate can zoom out */
     }
   </style>
 </head>
 <body>
-  <div class="image-container">
-    <img src="form.png" alt="Google Form Screenshot">
-  </div>
+  <img id="screenshot" src="form.png" alt="Google Form Screenshot">
+  
+  <script>
+    const img = document.getElementById('screenshot');
+    img.addEventListener('click', () => {
+      img.classList.toggle('zoomed');
+    });
+  </script>
 </body>
 </html>
