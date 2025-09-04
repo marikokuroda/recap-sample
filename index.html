@@ -9,25 +9,30 @@
       margin: 0;
       background: #f0f0f0;
       display: flex;
-      justify-content: center; /* center the image */
-    }
-    .image-container {
-      width: 100vw;     /* full viewport width on mobile */
-      overflow: hidden;  /* hide extra whitespace */
-    }
-    .image-container img {
-      width: 100%;       /* fill the container width */
-      height: auto;
-      object-fit: cover; /* zoom into the center */
+      justify-content: center;
+      align-items: flex-start;
     }
 
-    /* Optional: for large screens, show full image */
-    @media(min-width: 768px) {
-      .image-container {
-        width: auto;
-      }
+    .image-container {
+      width: 100%;           /* full available width */
+      max-width: 100vw;      /* never exceed viewport width */
+      overflow: hidden;      /* hide extra blank space */
+    }
+
+    .image-container img {
+      display: block;
+      width: auto;           /* natural width */
+      max-width: none;       /* prevent shrinking */
+      height: auto;
+      margin: 0 auto;        /* center horizontally */
+      transform: scale(1.2); /* zoom into center dynamically */
+      transform-origin: center center; /* keep center focus */
+    }
+
+    /* Optional: adjust zoom for very small screens */
+    @media (max-width: 480px) {
       .image-container img {
-        width: auto;
+        transform: scale(1.0);
       }
     }
   </style>
