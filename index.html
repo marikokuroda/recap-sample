@@ -10,29 +10,28 @@
       background: #f0f0f0;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
     }
 
     .image-container {
-      width: 100%;           /* full available width */
-      max-width: 100vw;      /* never exceed viewport width */
-      overflow: hidden;      /* hide extra blank space */
+      width: 100%;
+      overflow: hidden; /* hide side whitespace */
+      max-width: 100vw; /* never exceed viewport width */
     }
 
     .image-container img {
       display: block;
-      width: auto;           /* natural width */
-      max-width: none;       /* prevent shrinking */
+      width: 100%;       /* scale to container width if container smaller than image */
       height: auto;
-      margin: 0 auto;        /* center horizontally */
-      transform: scale(1.2); /* zoom into center dynamically */
-      transform-origin: center center; /* keep center focus */
+      object-fit: cover; /* crop left/right blank space */
+      object-position: center center; /* keep the form center in view */
     }
 
-    /* Optional: adjust zoom for very small screens */
-    @media (max-width: 480px) {
+    /* Desktop: show full image at natural width if viewport is wider */
+    @media (min-width: 1200px) {
       .image-container img {
-        transform: scale(1.0);
+        width: auto;
+        max-width: none;
+        object-fit: none;
       }
     }
   </style>
