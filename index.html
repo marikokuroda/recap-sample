@@ -3,37 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Form Screenshot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       background: #f0f0f0;
       display: flex;
       justify-content: center;
-      overflow-x: auto; /* allow horizontal scroll when zoomed */
+      overflow-x: auto; /* allow horizontal scroll if needed */
     }
     img {
       display: block;
       margin: 0 auto;
       max-width: none; /* prevents shrinking */
-      width: 100%;     /* start fit-to-screen */
+      width: auto;     /* show actual size */
       height: auto;
-      cursor: zoom-in; /* indicate clickable */
-      transition: width 0.3s ease;
-    }
-    img.zoomed {
-      width: auto;       /* actual size */
-      cursor: zoom-out;  /* indicate can zoom out */
     }
   </style>
 </head>
 <body>
-  <img id="screenshot" src="form.png" alt="Google Form Screenshot">
-  
-  <script>
-    const img = document.getElementById('screenshot');
-    img.addEventListener('click', () => {
-      img.classList.toggle('zoomed');
-    });
-  </script>
+  <img src="form.png" alt="Google Form Screenshot">
 </body>
 </html>
