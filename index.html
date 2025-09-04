@@ -10,21 +10,24 @@
       background: #f0f0f0;
       display: flex;
       justify-content: center;
-      overflow-x: auto; /* allow horizontal scroll if needed */
+      overflow-x: auto; /* allow horizontal scroll when zoomed */
     }
 
     .image-container {
+      position: relative;
       width: 100%;
-      max-width: 100vw;  /* never exceed viewport width */
-      overflow: hidden;  /* crop blank sides */
+      max-width: 100vw;
+      overflow: hidden; /* crop blank sides */
     }
 
     .image-container img {
       display: block;
-      width: 100%;           /* scale to container width */
+      width: 100%;           /* default: fit container */
       height: auto;
       object-fit: cover;     /* zoom in to remove blank sides */
-      object-position: center center; /* focus on center of image */
+      object-position: center center;
+      cursor: zoom-in;
+      transition: width 0.3s ease;
     }
 
     /* Desktop: show full image at natural size */
@@ -34,11 +37,53 @@
         object-fit: none;
       }
     }
+
+    /* Zoomed state */
+    .zoomed {
+      width: auto !important;
+      object-fit: none !important;
+      cursor: zoom-out;
+    }
+
+    /* Click-to-zoom hint overlay */
+    .hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      pointer-events: none; /* clicks pass through */
+      transition: opacity 0.3s ease;
+    }
+
+    /* Hide hint when zoomed */
+    .zoomed + .hint {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img src="form.png" alt="Google Form Screenshot">
+    <img id="screenshot" src="form.png" alt="Google Form Screenshot" title="Click to zoom">
+    <span class="hint">Click to zoom</span>
   </div>
+
+  <script>
+    const img = document.getElementById('screenshot');
+    const hint = document.querySelector('.hint');
+
+    img.addEventListener('click', () => {
+      img.classList.toggle('zoomed');
+      // Optionally hide the hint when zoomed
+      if (img.classList.contains('zoomed')) {
+        hint.style.opacity = '0';
+      } else {
+        hint.style.opacity = '1';
+      }
+    });
+  </script>
 </body>
 </html>
