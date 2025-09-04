@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Form Screenshot</title>
-    <!-- This tells mobile browsers to use the device width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body {
-        margin: 0;
-        background: #f0f0f0;
+<head>
+  <meta charset="utf-8">
+  <title>Form Screenshot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center; /* center the image */
+    }
+    .image-container {
+      width: 100vw;     /* full viewport width on mobile */
+      overflow: hidden;  /* hide extra whitespace */
+    }
+    .image-container img {
+      width: 100%;       /* fill the container width */
+      height: auto;
+      object-fit: cover; /* zoom into the center */
+    }
+
+    /* Optional: for large screens, show full image */
+    @media(min-width: 768px) {
+      .image-container {
+        width: auto;
       }
-      img {
-        display: block;
-        width: 100%;  /* fill the screen width */
-        height: auto; /* keep aspect ratio */
+      .image-container img {
+        width: auto;
       }
-    </style>
-  </head>
-  <body>
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
     <img src="form.png" alt="Google Form Screenshot">
-  </body>
+  </div>
+</body>
 </html>
