@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>(Sample) The Wonderful Wizard of Oz Recap</title>
+    <title>Form Screenshot</title>
+    <!-- This tells mobile browsers to use the device width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
         margin: 0;
@@ -10,12 +12,12 @@
       }
       img {
         display: block;
-        margin: 0 auto;
-        max-width: none; /* prevents shrinking */
+        width: 100%;  /* fill the screen width */
+        height: auto; /* keep aspect ratio */
       }
     </style>
   </head>
   <body>
-    <img src="form.png" alt="Google Form Screenshot" style="width:100%; height:auto;">
+    <img src="form.png" alt="Google Form Screenshot">
   </body>
 </html>
