@@ -12,16 +12,33 @@
       justify-content: center;
       overflow-x: auto; /* allow horizontal scroll if needed */
     }
-    img {
+
+    .image-container {
+      width: 100%;
+      max-width: 100vw;  /* never exceed viewport width */
+      overflow: hidden;  /* crop blank sides */
+    }
+
+    .image-container img {
       display: block;
-      margin: 0 auto;
-      max-width: none; /* prevents shrinking */
-      width: auto;     /* show actual size */
+      width: 100%;           /* scale to container width */
       height: auto;
+      object-fit: cover;     /* zoom in to remove blank sides */
+      object-position: center center; /* focus on center of image */
+    }
+
+    /* Desktop: show full image at natural size */
+    @media (min-width: 1200px) {
+      .image-container img {
+        width: auto;
+        object-fit: none;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="form.png" alt="Google Form Screenshot">
+  <div class="image-container">
+    <img src="form.png" alt="Google Form Screenshot">
+  </div>
 </body>
 </html>
